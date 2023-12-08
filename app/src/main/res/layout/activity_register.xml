@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".RegisterActivity">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:src="@drawable/logo_pu"/>
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginTop="15dp"
+                android:hint="Username"
+                android:padding="10dp"
+                android:id="@+id/username_reg_ui"/>
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginTop="15dp"
+                android:hint="Name"
+                android:padding="10dp"
+                android:id="@+id/name_reg_ui"/>
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginTop="15dp"
+                android:hint="Email"
+                android:padding="10dp"
+                android:id="@+id/email_reg_ui"/>
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginTop="15dp"
+                android:hint="Password"
+                android:padding="10dp"
+                android:id="@+id/password_reg_ui"/>
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginTop="15dp"
+                android:hint="Re-enter password"
+                android:padding="10dp"
+                android:id="@+id/reenter_pass_reg_ui"/>
+
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:layout_marginTop="15dp"
+                android:text="Register"
+                android:padding="10dp"
+                android:id="@+id/register_btn"/>
+        
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already a user ? Login"
+                android:id="@+id/login_user_reg_ui"/>
+
+</LinearLayout>

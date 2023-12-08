@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "844318832570",
+    "firebase_url": "https://xtag-202bd-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "xtag-202bd",
+    "storage_bucket": "xtag-202bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844318832570:android:d3d9b949e7a0dd40d5cf83",
+        "android_client_info": {
+          "package_name": "com.slavery.xtag"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "844318832570-maaepsn33rpcp9u6e933u3l61ctono5i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCooa1vXoV2eMdKS6d2UuIebB7yEgjiFeU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "844318832570-maaepsn33rpcp9u6e933u3l61ctono5i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
