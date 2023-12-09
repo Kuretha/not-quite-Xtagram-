@@ -27,7 +27,7 @@ public class ChatModel {
     }
 
     public void setMessage(String message) {
-        this.messageg = message;
+        this.message = message;
     }
 
     public void setUser_name(String user_name) {
