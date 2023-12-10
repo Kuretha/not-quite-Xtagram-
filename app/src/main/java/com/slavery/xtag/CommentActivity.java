@@ -3,7 +3,10 @@ package com.slavery.xtag;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,14 +24,21 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.slavery.xtag.Adapter.CommentAdapter;
+import com.slavery.xtag.Model.Comment;
 import com.slavery.xtag.Model.User;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CommentActivity extends AppCompatActivity {
+    private RecyclerView recyclerView;
+    private CommentAdapter commentAdapter;
+    private List<Comment> commentList;
 
     private EditText addComment;
     private CircleImageView profileImage;
@@ -47,6 +57,16 @@ public class CommentActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Comment");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        recyclerView = findViewById(R.id.recycler_view_comment);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        commentList = new ArrayList<>();
+        commentAdapter = new CommentAdapter(this, commentList);
+
+        recyclerView.setAdapter(commentAdapter);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +95,30 @@ public class CommentActivity extends AppCompatActivity {
                 } else {
                     putComment();
                 }
+            }
+        });
+
+        getComment();
+    }
+
+    private void getComment() {
+        FirebaseDatabase.getInstance().getReference().child("Comments").child(postId).addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                commentList.clear();
+
+                for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                    Comment comment = snapshot1.getValue(Comment.class);
+                    commentList.add(comment);
+                }
+
+                commentAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
