@@ -94,6 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                 HashMap<String, Object> map = new HashMap<>();
                 map.put("name", name);
                 map.put("email", email);
+                map.put("username", username);
                 map.put("password", password);
                 map.put("id", Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
                 map.put("bio", "");
