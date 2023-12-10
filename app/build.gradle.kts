@@ -45,6 +45,7 @@ dependencies {
 //    implementation("com.vanniktech:android-image-cropper:4.5.0")
     implementation("com.theartofdev.edmodo:android-image-cropper:2.8.0")
     implementation ("com.squareup.picasso:picasso:2.5.2")
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 
     // firebase libs
     implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
