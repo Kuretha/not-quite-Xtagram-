@@ -24,10 +24,10 @@
             <com.hendraanggrian.appcompat.socialview.widget.SocialAutoCompleteTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@id/search_bar"
+                    android:id="@id/searchBar"
                     android:background="@android:color/transparent"
                     android:hint="Search..."
-                    android:layout_marginStart="15dpdp"/>
+                    android:layout_marginStart="15dp"/>
 
         </androidx.appcompat.widget.Toolbar>
 
