@@ -2,17 +2,17 @@ package com.slavery.xtag.Model;
 
 public class User {
 
-    private String name, email, user_name, bio, imageurl, id;
+    private String name, email, user_name, bio, imageUrl, id;
 
     public User() {
     }
 
-    public User(String name, String email, String user_name, String bio, String imageurl, String id) {
+    public User(String name, String email, String user_name, String bio, String imageUrl, String id) {
         this.name = name;
         this.email = email;
         this.user_name = user_name;
         this.bio = bio;
-        this.imageurl = imageurl;
+        this.imageUrl = imageUrl;
         this.id = id;
     }
 
@@ -48,12 +48,12 @@ public class User {
         this.bio = bio;
     }
 
-    public String getImageurl() {
-        return imageurl;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImageurl(String imageurl) {
-        this.imageurl = imageurl;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getId() {
