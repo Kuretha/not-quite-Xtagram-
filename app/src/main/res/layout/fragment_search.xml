@@ -13,38 +13,55 @@
 
         <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="79dp"
                 android:id="@+id/s_toolbar"
                 android:background="?android:attr/windowBackground">
+
             <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_search"/>
+                    android:src="@drawable/ic_search" />
 
             <com.hendraanggrian.appcompat.socialview.widget.SocialAutoCompleteTextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:id="@id/searchBar"
                     android:background="@android:color/transparent"
                     android:hint="Search..."
-                    android:layout_marginStart="15dp"/>
+                    android:layout_marginStart="10dp" />
 
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
+    
+    <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recycle_view_user"
-            android:layout_below="@id/s_bar"/>
-
-    <!--it should be tag not text in end(id)-->
-    <androidx.recyclerview.widget.RecyclerView
+            tools:ignore="ScrollViewCount"
+            android:layout_below="@id/s_bar">
+         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recycler_view_text"
-            android:layout_below="@id/recycle_view_user"
-            android:layout_marginTop="8dp"/>
+            android:orientation="vertical">
+
+             <androidx.recyclerview.widget.RecyclerView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:id="@+id/recycle_view_user" />
+
+        <!--it should be tag not text in end(id)-->
+             <androidx.recyclerview.widget.RecyclerView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:id="@+id/recycler_view_text"
+                     android:layout_marginTop="8dp"/>
+
+         </LinearLayout>
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
 
 </RelativeLayout>
