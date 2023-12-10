@@ -37,6 +37,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Objects;
 
+// NOt used
 public class LoginActivity extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.

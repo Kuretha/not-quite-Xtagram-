@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+// Log out function
+
 //    @Override
 //    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 //        switch (item.getItemId()) {
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseMessaging.getInstance().subscribeToTopic("global_chat");
+//        FirebaseMessaging.getInstance().subscribeToTopic("global_chat");
 
         mAuth = FirebaseAuth.getInstance();
         toolbar = findViewById(R.id.toolbar);
@@ -138,48 +140,48 @@ public class MainActivity extends AppCompatActivity {
             messageObj.put("messageID", messageID);
             messageObj.put("user_image_url", user_image_url);
 
-            MAIN_CHAT_DATABASE.document(messageID).set(messageObj).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()) {
-//                        FirebaseMessaging.getInstance().unsubscribeFromTopic("global_chat");
-                        SendPushNotification sendPushNotification = new SendPushNotification(MainActivity.this);
-                        sendPushNotification.startPush(user.getDisplayName(), message, "global_chat");
-                        chat_box.setText("");
-                    } else {
-                        Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+//            MAIN_CHAT_DATABASE.document(messageID).set(messageObj).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                @Override
+//                public void onComplete(@NonNull Task<Void> task) {
+//                    if(task.isSuccessful()) {
+////                        FirebaseMessaging.getInstance().unsubscribeFromTopic("global_chat");
+//                        SendPushNotification sendPushNotification = new SendPushNotification(MainActivity.this);
+//                        sendPushNotification.startPush(user.getDisplayName(), message, "global_chat");
+//                        chat_box.setText("");
+//                    } else {
+//                        Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
         }
     }
 
-    // 47:00, youtube video
-    public void OpenExplorer(View view) {
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-//            chooseImage();
-        } else {
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 20);
-            } else {
-                Toast.makeText(this, "Storage Permission Needed", Toast.LENGTH_SHORT).show();
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 20);
-            }
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 20) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
-//                chooseImage();
-            } else {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
+//    // 47:00, youtube video
+//    public void OpenExplorer(View view) {
+//        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+////            chooseImage();
+//        } else {
+//            if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+//                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 20);
+//            } else {
+//                Toast.makeText(this, "Storage Permission Needed", Toast.LENGTH_SHORT).show();
+//                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 20);
+//            }
+//        }
+//    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if (requestCode == 20) {
+//            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+////                chooseImage();
+//            } else {
+//                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
 
 //    private void chooseImage() {
 //        CropImage.activity()
