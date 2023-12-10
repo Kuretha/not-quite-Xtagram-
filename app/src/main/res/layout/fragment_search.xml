@@ -38,7 +38,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/recycle_view_user"
             android:layout_below="@id/s_bar"/>
-    
+
+    <!--it should be tag not text in end(id)-->
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.hendraanggrian.appcompat.socialview.widget.SocialAutoCompleteTextView;
+import com.slavery.xtag.Adapter.TagAdapter;
 import com.slavery.xtag.Adapter.UserAdapter;
 import com.slavery.xtag.Model.User;
 import com.slavery.xtag.R;
@@ -35,6 +36,10 @@ public class SearchFragment extends Fragment {
     private List<User> mUser;
     private UserAdapter userAdapter;
 
+    private RecyclerView recyclerViewTag;
+    private List<String> mHashTag, mHashTagCount;
+    private TagAdapter tagAdapter;
+
     private SocialAutoCompleteTextView searchBar;
 
     @Override
@@ -46,6 +51,15 @@ public class SearchFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        recyclerViewTag = view.findViewById(R.id.recycler_view_text);
+        recyclerViewTag.setHasFixedSize(true);
+        recyclerViewTag.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        mHashTag = new ArrayList<>();
+        mHashTagCount = new ArrayList<>();
+        tagAdapter = new TagAdapter(getContext(), mHashTag, mHashTagCount);
+        recyclerViewTag.setAdapter(tagAdapter);
+
         mUser = new ArrayList<>();
         userAdapter = new UserAdapter(getContext(), mUser, true);
         recyclerView.setAdapter(userAdapter);
@@ -53,6 +67,7 @@ public class SearchFragment extends Fragment {
         searchBar = view.findViewById(R.id.searchBar);
 
         readUser();
+        readTags();
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -66,11 +81,32 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                filter(s.toString());
             }
         });
 
         return view;
+    }
+
+    private void readTags() {
+        FirebaseDatabase.getInstance().getReference().child("HashTags").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                mHashTag.clear();
+                mHashTagCount.clear();
+
+                for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                    mHashTag.add(snapshot1.getKey());
+                    mHashTagCount.add(snapshot1.getChildrenCount() + " ");
+                }
+                tagAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void readUser() {
@@ -119,4 +155,18 @@ public class SearchFragment extends Fragment {
             }
         });
     }
+
+    private void filter (String text) {
+        List<String> mSearchTag = new ArrayList<>();
+        List<String> mSearchTagCount = new ArrayList<>();
+
+        for (String s : mHashTag) {
+            if (s.toLowerCase().contains(text.toLowerCase())){
+                mSearchTag.add(s);
+                mSearchTagCount.add(mHashTagCount.get(mHashTag.indexOf(s)));
+            }
+        }
+        tagAdapter.filter(mSearchTag, mSearchTagCount);
+    }
+
 }
