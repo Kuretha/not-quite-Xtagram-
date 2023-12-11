@@ -22,6 +22,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -30,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText username, name, email, password, repass;
     private DatabaseReference mRootRef;
+    private FirebaseFirestore mRootRefStore;
     private Button register_btn;
     private TextView loginUser;
     private FirebaseAuth mAuth;
@@ -50,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         loginUser = findViewById(R.id.login_user_reg_ui);
 
         mRootRef = FirebaseDatabase.getInstance().getReference();
+        mRootRefStore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         ab = new AlertDialog.Builder(this);
 
@@ -114,6 +118,20 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                             }
                         });
+
+                mRootRefStore.collection("Users").add(map)
+                        .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(RegisterActivity.this, "Update the Profile to DB", Toast.LENGTH_SHORT).show();
+//                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                            startActivity(intent);
+//                            finish();
+                        }
+                    }
+                });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

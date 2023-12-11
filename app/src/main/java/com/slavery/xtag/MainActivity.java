@@ -37,8 +37,7 @@ public class MainActivity extends AppCompatActivity {
                     selectorFragment = new SearchFragment();
                 } else if (item.getItemId() == R.id.nav_add) {
                     selectorFragment = null;
-                    startActivity(new Intent(MainActivity.this, PostActivity.class))
-                    ;
+                    startActivity(new Intent(MainActivity.this, PostActivity.class));
                 } else if (item.getItemId() == R.id.nav_heart) {
                     selectorFragment = new NotificationFragment();
                 } else if (item.getItemId() == R.id.nav_profile) {
